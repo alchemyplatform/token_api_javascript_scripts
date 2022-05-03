@@ -30,9 +30,9 @@ const metadata = await web3.alchemy.getTokenMetadata( tokenContractAddresses[0])
 //Forming the name of the token that comprises of the Name and the Symbol of the token
 const tokenName = metadata.name + "(" + metadata.symbol + ")";
 
-/* Calculating the tokenBalance in USD. The "decimals" field in the token metadata on line 21 tells us 
+/* Calculating the tokenBalance in decimal. The "decimals" field in the token metadata on line 21 tells us 
 how many digits at the end of the tokenBalance in Line 17 are to the right of the decimal. 
 so we divide the Full tokenBalance with 10 to the power of the decimal value of the token
 */
-const tokenBalance = "$"+ data["tokenBalances"][0]["tokenBalance"]/Math.pow(10, metadata.decimals)
+const tokenBalance = data["tokenBalances"][0]["tokenBalance"]/Math.pow(10, metadata.decimals)
 console.log("Token balance for", tokenName, "is", tokenBalance);
