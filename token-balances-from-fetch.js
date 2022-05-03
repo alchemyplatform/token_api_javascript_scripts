@@ -35,6 +35,9 @@ var requestOptions = {
 // Make the request and print the formatted response:
 fetch(fetchURL, requestOptions)
   .then(response => response.json())
-  .then(response => JSON.stringify(response, null, 2))
-  .then(result => console.log(result))
+  .then(response => {
+    //This line converts the tokenBalance values from hex to decimal
+    response["result"]["tokenBalances"][0]["tokenBalance"] = parseInt(response["result"]["tokenBalances"][0]["tokenBalance"], 16);
+    console.log("Token balance for address\n", JSON.stringify(response.result, null, 2))
+  })
   .catch(error => console.log('error', error));
